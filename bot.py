@@ -26,43 +26,6 @@ bot = commands.Bot(
 async def on_ready():
     print(f"Logged in as {bot.user}")
 
-
-@bot.command()
-async def hello(ctx):
-    await ctx.send("Hello!")
-
-@bot.command()
-async def whoami(ctx):
-    await ctx.send(f"You are {ctx.author}")
-
-@bot.command()
-async def calc(ctx, num1, sym, num2):
-    if num1.isnumeric() == False:
-        await ctx.send(f"Invalid input {num1}")
-        return
-    num1 = int(num1)
-    if num2.isnumeric() == False or num2 == "0":
-        await ctx.send(f"Invalid input {num2}")
-        return
-    num2 = int(num2)
-    if sym == "+":
-        await ctx.send(num1 + num2)
-    elif sym == "-":
-        await ctx.send(num1 - num2)
-    elif sym == "*":
-        await ctx.send(num1 * num2)
-    elif sym == "/":
-        await ctx.send(num1 / num2)
-    else:
-        await ctx.send(f"Invalid input {sym}")
-
-@bot.command()
-async def predictmyfuture(ctx):
-    with open("predicts.txt") as myfile:
-        choice = (myfile.read().splitlines())[random.randrange(0, 106)]
-        await ctx.send(f"{ctx.author} {choice}")
-
-
 @bot.command()
 async def wordle(ctx):
     with open("words.txt") as wordlist:
